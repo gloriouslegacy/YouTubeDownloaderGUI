@@ -1,0 +1,50 @@
+﻿<Window x:Class="YouTubeDownloaderGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="YouTube Downloader (yt-dlp WPF)" Height="500" Width="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#1E1E2E" Foreground="White">
+        
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Text="🎬 YouTube Downloader (yt-dlp)" 
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- URL 입력창 -->
+        <TextBox x:Name="txtUrls" Grid.Row="1" AcceptsReturn="True" 
+                 VerticalScrollBarVisibility="Auto"
+                 Background="#2E2E3E" BorderThickness="0" Padding="8"
+                 FontSize="14" Foreground="White" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" />
+
+        <!-- 옵션 선택 + 버튼 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,10">
+            <ComboBox x:Name="comboFormat" Width="150" SelectedIndex="0"
+                      Background="#2E2E3E" Foreground="black" Padding="5">
+                <ComboBoxItem Content="Video (MP4)" />
+                <ComboBoxItem Content="Music (MP3)" />
+            </ComboBox>
+            <Button x:Name="btnDownload" Content="⬇ Download" 
+                    Width="120" Height="30" Margin="15,0,0,0"
+                    Background="#3E64FF" Foreground="White" 
+                    BorderThickness="0" Click="btnDownload_Click"/>
+        </StackPanel>
+
+        <!-- 진행률 -->
+        <ProgressBar x:Name="progressBar" Grid.Row="3" Height="20" Minimum="0" Maximum="100" />
+
+        <!-- 로그 출력 -->
+        <TextBox x:Name="txtOutput" Grid.Row="4" Margin="0,10,0,0"
+                 VerticalScrollBarVisibility="Auto"
+                 AcceptsReturn="True" IsReadOnly="True"
+                 Background="#2E2E3E" BorderThickness="0" Padding="8"
+                 FontSize="13" Foreground="LightGray" />
+    </Grid>
+</Window>
