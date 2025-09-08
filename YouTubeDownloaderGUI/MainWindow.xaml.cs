@@ -88,6 +88,7 @@ namespace YouTubeDownloaderGUI
             }
         }
 
+        // 다운로드 버튼 클릭 이벤트
         private async void btnDownload_Click(object sender, RoutedEventArgs e)
         {
             string urls = txtUrls.Text.Trim();
@@ -143,6 +144,28 @@ namespace YouTubeDownloaderGUI
 
             AppendLog("✅ 모든 다운로드가 완료되었습니다.");
             progressBar.Value = 0;
+        }
+
+        // URL 목록 지우기 버튼 클릭 이벤트
+        private void btnUrlsClear_Click(object sender, RoutedEventArgs e)
+        {
+            txtUrls.Clear();
+            AppendLog("URL 목록이 지워졌습니다.");
+        }
+
+        // 다운로드 폴더 열기 버튼 클릭 이벤트
+        private void btnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            if (Directory.Exists(downloadPath))
+            {
+                Process.Start("explorer.exe", downloadPath);
+                AppendLog("다운로드 폴더를 열었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("다운로드 폴더를 찾을 수 없습니다.", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                AppendLog("다운로드 폴더가 존재하지 않습니다.");
+            }
         }
 
         private async Task RunProcessAsync(string fileName, string arguments)
